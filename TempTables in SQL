@@ -1,0 +1,51 @@
+--TempTables in SQL
+
+
+Create Table #temp_employee (
+EmployeeID int,
+jobtitle varchar(100),
+salary int
+)
+Insert into #temp_employee values (
+'1001', 'HR', '45000'
+)
+
+Insert into #temp_employee
+select *
+from employeesalary
+
+select *
+from #temp_employee
+
+drop table if exists #temp_employee2
+create table #temp_employee2 (
+jobtitle varchar (50),
+employeeperjob int,
+avgage int,
+avgsal int
+)
+insert into #temp_employee2
+select jobtitle, count(jobtitle), avg(age), avg(salary)
+from EmployeeDemographics emp
+join EmployeeSalary sal
+on emp.employeeid=sal.employeeid
+group by jobtitle
+
+
+select*
+from #temp_employee2
+
+
+CREATE TABLE EmployeeErrors (
+EmployeeID varchar(50)
+,FirstName varchar(50)
+,LastName varchar(50)
+)
+
+Insert into EmployeeErrors Values 
+('1001  ', 'Jimbo', 'Halbert')
+,('  1002', 'Pamela', 'Beasely')
+,('1005', 'TOby', 'Flenderson - Fired')
+
+Select *
+From EmployeeErrors
