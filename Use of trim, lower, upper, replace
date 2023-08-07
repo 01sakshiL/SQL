@@ -1,0 +1,27 @@
+--  Trim, LTRIM, RTRIM
+
+Select EmployeeID, TRIM(employeeID) AS IDTRIM
+FROM EmployeeErrors 
+
+Select EmployeeID, RTRIM(employeeID) as IDRTRIM
+FROM EmployeeErrors 
+
+Select EmployeeID, LTRIM(employeeID) as IDLTRIM
+FROM EmployeeErrors 
+
+
+Select LastName, REPLACE(LastName, '- Fired', '') as LastNameFixed
+FROM EmployeeErrors
+
+
+Select firstname, LOWER(firstname)
+from EmployeeErrors
+
+Select Firstname, UPPER(FirstName)
+from EmployeeErrors
+
+Select err.firstname, Substring(err.FirstName,1,2), dem.firstname ,Substring(dem.FirstName,1,2)
+FROM EmployeeErrors err
+JOIN EmployeeDemographics dem
+	on Substring(err.FirstName,1,2) = Substring(dem.FirstName,1,2)
+	and Substring(err.LastName,1,2) = Substring(dem.LastName,1,2)
