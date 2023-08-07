@@ -1,0 +1,29 @@
+--Stored Procedures
+
+
+create procedure test
+as
+select *
+from employeedemographics
+
+exec test
+
+
+create procedure temp
+as
+create table #temp_employee (
+jobtitle varchar (50),
+employeeperjob int,
+avgage int,
+avgsal int
+)
+insert into #temp_employee
+select jobtitle, count(jobtitle), avg(age), avg(salary)
+from EmployeeDemographics emp
+join EmployeeSalary sal
+on emp.employeeid=sal.employeeid
+group by jobtitle
+
+select *
+from #temp_employee
+
